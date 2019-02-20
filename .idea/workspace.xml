@@ -10,7 +10,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/com/sexteam/dao/imp/Hero_CommodityDaoImp.java" line="60" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee53a31a-a449-490d-b514-a6ee2248c168" name="Default" comment="" />
+    <list default="true" id="ee53a31a-a449-490d-b514-a6ee2248c168" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -77,8 +80,8 @@
       <file leaf-file-name="payprice.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/payprice.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="161" column="31" lean-forward="true" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
+            <state relative-caret-position="358">
+              <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
             </state>
           </provider>
         </entry>
@@ -172,6 +175,9 @@
       <dir>F:\Program Files\IdeaIU Web文件\ArenaOfValorStore\web</dir>
     </dirStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -249,6 +255,7 @@
     <option name="width" value="800" />
     <option name="height" value="860" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -633,7 +640,7 @@
       <workItem from="1550500998108" duration="4156000" />
       <workItem from="1550594222590" duration="774000" />
       <workItem from="1550595035874" duration="18447000" />
-      <workItem from="1550643164941" duration="2633000" />
+      <workItem from="1550643164941" duration="3335000" />
     </task>
     <servers />
   </component>
@@ -670,11 +677,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218781000" />
+    <option name="totallyTimeSpent" value="219483000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
@@ -694,11 +700,11 @@
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.10554804" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.10569106" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32882273" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.9304085" visible="true" weight="0.24228792" />
-      <window_info id="Web" order="6" sideWeight="0.06959153" side_tool="true" visible="true" weight="0.24228792" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.93030304" visible="true" weight="0.24228792" />
+      <window_info id="Web" order="6" sideWeight="0.06969697" side_tool="true" visible="true" weight="0.24228792" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1051,8 +1057,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/payprice.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="161" column="31" lean-forward="true" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
+        <state relative-caret-position="358">
+          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
         </state>
       </provider>
     </entry>
