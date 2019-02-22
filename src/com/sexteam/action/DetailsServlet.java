@@ -33,9 +33,11 @@ public class DetailsServlet extends HttpServlet {
                 if(judge!=null&&judge.equals("ok")){
 //                    System.out.println("judge:"+judge);
                         boolean b = (boolean) request.getAttribute(RegionValue.JUDGEADDORDER);
-                        if(b){
-                            request.getRequestDispatcher("payprice.jsp").forward(request,response);
-                        }else {
+                        request.setAttribute(RegionValue.JUDGEADDORDER,b);
+                        if(!b){
+//                            request.getRequestDispatcher("payprice.jsp").forward(request,response);
+//                            response.sendRedirect("payprice.jsp");
+//                        }else {
                             request.getRequestDispatcher("detailsjudge.jsp").forward(request,response);
                         }
                         return;

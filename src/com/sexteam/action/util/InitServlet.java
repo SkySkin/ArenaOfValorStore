@@ -27,6 +27,20 @@ public class InitServlet extends HttpServlet {
         try {
             CommtityUtil.updateCommtity(request, response);
             request.setAttribute(RegionValue.SUB_COMMTITYSERVLE_NAME,"commodityservlet");
+            String attribute = (String) request.getSession().getAttribute(RegionValue.ORDERCHECKOUT);
+            if(attribute!=null){
+//                System.out.println("attribute:"+attribute);
+                if(attribute.equals("success")){
+                    System.out.println("success");
+                    request.setAttribute("checkoutjudge","true");
+                    request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"");
+                }
+                if(attribute.equals("error")){
+                    System.out.println("error");
+                    request.setAttribute("checkoutjudge","false");
+                    request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"");
+                }
+            }
             request.getRequestDispatcher("commodity.jsp").forward(request,response);
 //            System.out.println("执行了");
             return;

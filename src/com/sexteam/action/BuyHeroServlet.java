@@ -26,6 +26,7 @@ public class BuyHeroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
+        hero_ordersService = new Hero_ordersServiceImp();
         Hero_orders hero_orders = new Hero_orders();
         Map<String, String[]> parameterMap = request.getParameterMap();
         try {
@@ -38,17 +39,27 @@ public class BuyHeroServlet extends HttpServlet {
         }
         String o_shippingaddress = hero_orders.getO_shippingaddress();
         User user = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
+        boolean b=false;
         if(user!=null){
             hero_orders.setU_id(user.getU_id());
             if(o_shippingaddress!=null){
                 //已经有收货地址了，进行了订单的确认，可以在数据库中插入订单了，但是订单状态初始为待支付
-                hero_ordersService = new Hero_ordersServiceImp();
-                boolean b = hero_ordersService.addOrder(hero_orders);
-                request.setAttribute(RegionValue.JUDGEADDORDER,b);
+                 b= hero_ordersService.addOrder(hero_orders);
+
+            }else {
+                request.setAttribute(RegionValue.HERO_ORDERS_JUDGE, hero_orders);
+                request.getRequestDispatcher("detailsservlet").forward(request, response);
+                return;
             }
         }
-        request.setAttribute(RegionValue.HERO_ORDERS_JUDGE,hero_orders);
-        request.getRequestDispatcher("detailsservlet").forward(request,response);
+        if(b){
+            response.sendRedirect("noworderservlet");
+            return;
+        }else {
+            request.setAttribute(RegionValue.JUDGEADDORDER, b);
+            request.getRequestDispatcher("detailsservlet").forward(request, response);
+            return;
+        }
 
 
     }

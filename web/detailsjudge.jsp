@@ -69,7 +69,10 @@
             <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
                     href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
-            <div class="sp-cart"><a href="shopcart.jsp">购物车</a><span>2</span></div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]</span>
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allordersservlet"><span>我的订单</span></a>
+            </div>
             <%
             } else {
             %>
@@ -137,11 +140,12 @@
                         <span><i class="layui-icon layui-icon-rate-solid"></i>收藏</span>
                     </div>
                     <div class="summary">
-                        <p class="activity"><span>活动价[${judgeaddorder}]</span><strong class="price"><i>￥</i>${item.c_proce}0</strong>
+                        <p class="activity"><span>活动价</span><strong class="price"><i>￥</i>${item.c_proce}0</strong>
                         </p>
                         <p class="address-box"><span>件&nbsp;&nbsp;&nbsp;&nbsp;数</span><strong class="address">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${heroorders.buycount}&nbsp;&nbsp;[件]</strong>
                         </p>
-                        <p class="activity"><span>合计总价</span><strong class="price"><i>￥</i>${item.c_proce*heroorders.buycount}0</strong>
+                        <p class="activity"><span>合计总价</span><strong
+                                class="price"><i>￥</i>${item.c_proce*heroorders.buycount}0</strong>
                         </p>
                     </div>
                     <div class="choose-attrs">
@@ -150,18 +154,20 @@
                             <span class="title">皮&nbsp;&nbsp;&nbsp;&nbsp;肤</span>
                             <div class="RadioStyle">
                                 <div class="Block PaddingL">
-                                    <input type="radio" name="heroskin" id="model1"  value="${heroorders.hero_skin}" checked="checked">
+                                    <input type="radio" name="heroskin" id="model1" value="${heroorders.hero_skin}"
+                                           checked="checked">
                                     <label for="model1">${heroorders.hero_skin}</label>
                                 </div>
                             </div>
                             <div class="clear"></div>
                         </div>
-                            <div class="color layui-clear">
-                                <span class="title">收货地址</span>
-                                    <div class="layui-input-block">
-                                        <textarea name="desc" id="address" placeholder="请输入地址" class="layui-textarea"></textarea>
-                                    </div>
+                        <div class="color layui-clear">
+                            <span class="title">收货地址</span>
+                            <div class="layui-input-block">
+                                <textarea name="desc" id="address" placeholder="请输入地址"
+                                          class="layui-textarea"></textarea>
                             </div>
+                        </div>
                     </div>
                     <div class="choose-btns">
                         <a id="confirmbay" href="javascript:;">
@@ -234,18 +240,18 @@
         $('#confirmbay').on('click', function () {
 
             var address = $('#address').val();
-            if(address.trim().length==0){
+            if (address.trim().length == 0) {
                 layer.msg('亲，请填写地址哦!');
 
                 return;
-            }else {
-            <%--alert("${pageContext.request.contextPath}/buyheroservlet?c_id=${item.c_id}&buycount=${heroorders.buycount}&hero_skin=${heroorders.hero_skin}&JUDGEBUY=ok&o_shippingaddress="+address+"")--%>
-            $(location).attr('href', "${pageContext.request.contextPath}/buyheroservlet?c_id=${item.c_id}&buycount=${heroorders.buycount}&hero_skin=${heroorders.hero_skin}&JUDGEBUY=ok&o_shippingaddress="+address+"");
+            } else {
+                <%--alert("${pageContext.request.contextPath}/buyheroservlet?c_id=${item.c_id}&buycount=${heroorders.buycount}&hero_skin=${heroorders.hero_skin}&JUDGEBUY=ok&o_shippingaddress="+address+"")--%>
+                $(location).attr('href', "${pageContext.request.contextPath}/buyheroservlet?c_id=${item.c_id}&buycount=${heroorders.buycount}&hero_skin=${heroorders.hero_skin}&JUDGEBUY=ok&o_shippingaddress=" + address + "&recount=1");
             }
         });
-        $(document).ready(function(){
-            var a=${judgeaddorder}+"";
-            if(a=="false"){
+        $(document).ready(function () {
+            var a = ${judgeaddorder}+"";
+            if (a == "false") {
                 layer.msg('亲，生成订单失败!');
             }
         });

@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="res/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="res/layui/css/layui.css">
     <script type="text/javascript" src="res/layui/layui.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
 <body style="height: 100%">
@@ -23,12 +24,18 @@
 
             <%
                 User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
-                if(attribute!=null){
+                if (attribute != null) {
             %>
-            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-            <div class="sp-cart"><a href="shopcart.jsp">购物车</a><span>2</span></div>
+            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
+                    href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]</span>
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allordersservlet"><span>我的订单</span></a>
+            </div>
+
             <%
-            }else {
+            } else {
             %>
             <div class="login"><a href="login.jsp">登录</a></div>
             <%
@@ -37,7 +44,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="header">
@@ -53,7 +59,8 @@
             </h1>
             <div class="mallSearch">
                 <form action="" class="layui-form" novalidate>
-                    <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入需要的商品">
+                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入需要的商品">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">
                         <i class="layui-icon layui-icon-search"></i>
                     </button>
@@ -85,16 +92,16 @@
     <div class="cart w1200">
         <div class="cart-table-th">
             <div class="th th-chk">
-                    <div class="select-all">
-                        <div class="cart-checkbox">
-                            <input class="check-all check" id="allCheckked" type="hidden" value="true">
-                        </div>
-                        <label>&nbsp;&nbsp;</label>
+                <div class="select-all">
+                    <div class="cart-checkbox">
+                        <input class="check-all check" id="allCheckked" type="hidden" value="true">
                     </div>
+                    <label>&nbsp;&nbsp;</label>
+                </div>
             </div>
             <div class="th th-item">
                 <div class="th-inner">
-                    商品[${judgeaddorder}]
+                    商品
                 </div>
             </div>
             <div class="th th-price">
@@ -112,49 +119,58 @@
                     小计
                 </div>
             </div>
+            <div class="th th-op">
+                <div class="th-inner">
+                    收货地址
+                </div>
+            </div>
         </div>
         <div class="OrderList">
             <div class="order-content" id="list-cont">
                 <ul class="item-content layui-clear">
-                <li class="th th-chk">
-                </li>
-                <li class="th th-item">
-                <div class="item-cont">
-                <a href="javascript:;"><img src="res/static/img/paging_img1.jpg" alt=""></a>
-                <div class="text">
-                <div class="title">宝宝T恤棉质小衫</div>
-                <p><span>粉色</span>  <span>130</span>cm</p>
-                </div>
-                </div>
-                </li>
-                <li class="th th-price">
-                <span class="th-su">189.00</span>
-                </li>
-                <li class="th th-amount">
-                <div class="box-btn layui-clear">
-                <div class=" layui-btn"> </div>
-                <input class="Quantity-input" disabled="disabled" type="" name="" value="1" disabled="disabled">
-                <div class=" layui-btn"> </div>
-                </div>
-                </li>
-                <li class="th th-sum">
-                <span class="sum">189.00</span>
-                </li>
+                    <li class="th th-chk">
+                    </li>
+                    <li class="th th-item">
+                        <div class="item-cont">
+                            <a href="javascript:;"><img
+                                    src="${pageContext.request.contextPath}/res/static/img2/${item.c_imag}" alt=""></a>
+                            <div class="text">
+                                <div class="title">${item.c_name}</div>
+                                <p><span>${heroorders.hero_skin}</span> <span>${item.c_describe}</span></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="th th-price">
+                        <span class="th-su">${item.c_proce}0</span>
+                    </li>
+                    <li class="th th-amount">
+                        <div class="box-btn layui-clear">
+                            <div class=" layui-btn"></div>
+                            <input class="Quantity-input" disabled="disabled" type="" name=""
+                                   value="${heroorders.buycount}" disabled="disabled">
+                            <div class=" layui-btn"></div>
+                        </div>
+                    </li>
+                    <li class="th th-sum">
+                        <span class="sum">${item.c_proce*heroorders.buycount}0&nbsp;&nbsp;[${heroorders.orderstate}]</span>
+                    </li>
+                    <li class="th th-op">
+                        <span>${heroorders.o_shippingaddress}</span>
+                    </li>
                 </ul>
             </div>
         </div>
 
 
-
-
-
         <div class="FloatBarHolder layui-clear">
-            <div class="th Settlement">
-                <button class="layui-btn">结算</button>
-            </div>
-            <div class="th total">
-                <p>应付：<span class="pieces-total">0</span></p>
-            </div>
+            <c:if test="${heroorders.orderstate=='待支付'}">
+                <div class="th Settlement">
+                    <button class="layui-btn" id="nowcheck">结算</button>
+                </div>
+                <div class="th total">
+                    <p>应付：<span class="pieces-total">${item.c_proce*heroorders.buycount}0</span></p>
+                </div>
+            </c:if>
         </div>
     </div>
 </div>
@@ -162,17 +178,23 @@
 <script type="text/javascript">
     layui.config({
         base: 'res/static/js/util/' //你存放新模块的目录，注意，不是layui的模块目录
-    }).use(['mm','jquery','element','car'],function(){
-        var mm = layui.mm,$ = layui.$,element = layui.element,car = layui.car;
+    }).use(['mm', 'jquery', 'element', 'car'], function () {
+        var mm = layui.mm, $ = layui.$, element = layui.element, car = layui.car;
         var layer = layui.layer;
-        $(document).ready(function(){
-            var a=${judgeaddorder}+"";
-            if(a=="true"){
-                layer.msg('亲，订单生成啦!');
-            }
-        });
-        car.init()
+        // car.init();
+        $('#nowcheck').on('click', function () {
+            $(location).attr('href', "${pageContext.request.contextPath}/ordercheckoutservlet?o_id=${heroorders.o_id}");
 
+        });
+        $(document).ready(function () {
+            var a = ${judgeaddorder}+"";
+            if (a == "ok") {
+
+            } else {
+                layer.msg('亲，订单生成啦');
+            }
+
+        });
 
 
     });

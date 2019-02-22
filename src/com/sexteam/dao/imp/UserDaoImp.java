@@ -18,6 +18,20 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User oneUser(Integer id) {
+        User user=null;
+        Connection conn = DBHelper.getConn();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM `user` where u_id="+id+"");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                user=new User();
+//                user.
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         return null;
     }
 

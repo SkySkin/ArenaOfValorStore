@@ -1,5 +1,7 @@
 <%@ page import="com.sexteam.util.RegionValue" %>
-<%@ page import="com.sexteam.vo.User" %><%--
+<%@ page import="com.sexteam.vo.User" %>
+<%@ page import="com.sexteam.service.CarService" %>
+<%@ page import="com.sexteam.service.imp.CarServiceImp" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/12/16
@@ -14,7 +16,8 @@
     <link rel="stylesheet" type="text/css" href="res/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="res/layui/css/layui.css">
     <script type="text/javascript" src="res/layui/layui.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
 <body style="height: 100%">
@@ -27,13 +30,24 @@
         </p>
         <div class="sn-quick-menu">
             <%
+                User setuser= new User();
+                setuser.setU_imag("F:\\Program Files\\实训\\Project Resources\\ArenaOfValorStore_ProjectResources\\userimg\\root.jpg");
+                setuser.setU_id(53);
+                setuser.setU_sex("男");
+                setuser.setU_pwd("123456");
+                setuser.setU_phone("15526404517");
+                setuser.setU_emall("1561@sad.dsa");
+                setuser.setU_adds("156das@ads.dsa");
+                setuser.setU_name("root");
+                CarService carService=new CarServiceImp();
+                int count= carService.getCarCountByU_id(setuser.getU_id());
+                setuser.setCarcount(count);
+                request.getSession().setAttribute(RegionValue.USER_MSG,setuser);
                 User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
                 if (attribute != null) {
-            %>
-            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-            <div class="sp-cart"><a href="shopcart.jsp">购物车</a><span>2</span></div>
-            <%
-            } else {
+                    response.sendRedirect(request.getContextPath() + "/initservlet");
+                    return;
+                } else {
             %>
             <div class="login"><a href="register.jsp">注册</a></div>
             <%
@@ -42,7 +56,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="header">
@@ -55,7 +68,8 @@
             </h1>
             <div class="mallSearch">
                 <form action="" class="layui-form" novalidate>
-                    <input type="text" name="title" required lay-verify="required" autocomplete="off" class="layui-input"
+                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                           class="layui-input"
                            placeholder="请输入需要的商品">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">
                         <i class="layui-icon layui-icon-search"></i>
@@ -73,7 +87,7 @@
         <div class="inner-cont0">
             <div class="inner-cont1 w1200">
                 <div class="inner-cont2">
-                    <a href="${pageContext.request.contextPath}/initservlet" >所有商品</a>
+                    <a href="${pageContext.request.contextPath}/initservlet">所有商品</a>
                     <%--target="_blank"--%>
                     <a href="buytoday.jsp">今日团购</a>
                     <a href="about.jsp">关于我们</a>
@@ -86,12 +100,12 @@
             <div class="form-box">
                 <form class="layui-form" action="loginservlet" method="post">
                     <%
-                        String url = request.getContextPath()+"/res/static/img2/1.jpg";
+                        String url = request.getContextPath() + "/res/static/img2/1.jpg";
                         String imgpath = (String) request.getAttribute("imgpath");
-                        if(request.getAttribute("imgpath")!=null){
+                        if (request.getAttribute("imgpath") != null) {
                             int i = imgpath.lastIndexOf("\\");
-                            url=request.getContextPath()+"/userimg/"+imgpath.substring(i+1,imgpath.length());
-                            System.out.println("url:"+url);
+                            url = request.getContextPath() + "/userimg/" + imgpath.substring(i + 1, imgpath.length());
+                            System.out.println("url:" + url);
                         }
                     %>
                     <legend>
@@ -101,23 +115,28 @@
                         <div class="layui-inline iphone">
                             <div class="layui-input-inline">
                                 <i class="layui-icon layui-icon-username iphone-icon"></i>
-                                <input type="text" name="u_name" id="phone" lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                                <input type="text" name="u_name" id="phone" lay-verify="required" placeholder="请输入账号"
+                                       autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline iphone">
                             <div class="layui-input-inline">
                                 <i class="layui-icon layui-icon-password iphone-icon"></i>
-                                <input type="password" name="u_pwd"  lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                                <input type="password" name="u_pwd" lay-verify="required" placeholder="请输入账号"
+                                       autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline veri-code">
                             <div class="layui-input-inline">
-                                <input id="pnum" type="text" name="pnum" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
-                                <img src="${pageContext.request.contextPath}/checkcode?type=login" id="find"  class="layui-btn" style="margin: 0px;padding: 0px">
+                                <input id="pnum" type="text" name="pnum" lay-verify="required" placeholder="请输入验证码"
+                                       autocomplete="off" class="layui-input">
+                                <img src="${pageContext.request.contextPath}/checkcode?type=login" id="find"
+                                     class="layui-btn" style="margin: 0px;padding: 0px">
                             </div>
                         </div>
                     </div>
-                    <div align="center" style="height: 15px;margin-top: 5px;color:darkred;font-size: 22px;margin-bottom: 10px">${requestScope.msg}</div>
+                    <div align="center"
+                         style="height: 15px;margin-top: 5px;color:darkred;font-size: 22px;margin-bottom: 10px">${requestScope.msg}</div>
                     <div class="layui-form-item login-btn">
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit="" lay-filter="">登录</button>
@@ -158,13 +177,13 @@
 <script type="text/javascript">
     layui.config({
         base: 'res/static/js/util' //你存放新模块的目录，注意，不是layui的模块目录
-    }).use(['jquery', 'form'], function() {
+    }).use(['jquery', 'form'], function () {
         var $ = layui.$,
             form = layui.form;
 
 
-        $("#find").click(function() {
-            this.src="${pageContext.request.contextPath}/checkcode?type=login&"+new Date()
+        $("#find").click(function () {
+            this.src = "${pageContext.request.contextPath}/checkcode?type=login&" + new Date()
         })
 
     })

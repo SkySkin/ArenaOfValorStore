@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.sexteam.vo.User" %>
+<%@ page import="com.sexteam.util.RegionValue" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/12/16
@@ -27,7 +28,28 @@
             <a href="${pageContext.request.contextPath}/initservlet">首页</a>
         </p>
         <div class="sn-quick-menu">
+            <%
+                User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
+            %>
+            <c:set var="islogin" value="<%=(attribute!=null)%>"/>
+            <%
+                if (attribute != null) {
+            %>
+            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
+                    href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]</span>
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allordersservlet"><span>我的订单</span></a>
+            </div>
+
+            <%
+            } else {
+            %>
             <div class="login"><a href="login.jsp">登录</a></div>
+            <%
+                }
+            %>
         </div>
     </div>
 </div>
@@ -76,12 +98,12 @@
                 <form class="layui-form" action="registerservlet" method="post" enctype="multipart/form-data">
                     <legend>
                         <%
-                            String url = request.getContextPath()+"/res/static/img2/1.jpg";
+                            String url = request.getContextPath() + "/res/static/img2/1.jpg";
                             String imgpath = (String) request.getAttribute("imgpath");
-                            if(request.getAttribute("imgpath")!=null){
+                            if (request.getAttribute("imgpath") != null) {
                                 int i = imgpath.lastIndexOf("\\");
-                                url=request.getContextPath()+"/userimg/"+imgpath.substring(i+1,imgpath.length());
-                                System.out.println("url:"+url);
+                                url = request.getContextPath() + "/userimg/" + imgpath.substring(i + 1, imgpath.length());
+                                System.out.println("url:" + url);
                             }
                         %>
                         <img src="<%=url%>" id="img1">
@@ -106,7 +128,7 @@
                         <div class="layui-inline iphone">
                             <div class="layui-input-inline">
                                 <i class="layui-icon layui-icon-password iphone-icon"></i>
-                                <input type="password"  lay-verify="required|repass" placeholder="请再次输入密码"
+                                <input type="password" lay-verify="required|repass" placeholder="请再次输入密码"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -199,10 +221,10 @@
             this.src = "${pageContext.request.contextPath}/checkcode?type=reg&" + new Date()
         })
         form.verify({
-            repass: function(value) {
+            repass: function (value) {
 //获取密码
                 var pass = $("#pass").val();
-                if(!new RegExp(pass).test(value)) {
+                if (!new RegExp(pass).test(value)) {
                     return '两次输入的密码不一致';
                 }
             }

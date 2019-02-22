@@ -1,5 +1,6 @@
 <%@ page import="com.sexteam.util.RegionValue" %>
 <%@ page import="com.sexteam.vo.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="res/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="res/layui/css/layui.css">
     <script type="text/javascript" src="res/layui/layui.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
 <body style="height: 100%">
@@ -22,12 +24,18 @@
 
             <%
                 User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
-                if(attribute!=null){
+                if (attribute != null) {
             %>
-            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-            <div class="sp-cart"><a href="shopcart.jsp">购物车</a><span>2</span></div>
+            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
+                    href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]</span>
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allordersservlet"><span>我的订单</span></a>
+            </div>
+
             <%
-            }else {
+            } else {
             %>
             <div class="login"><a href="login.jsp">登录</a></div>
             <%
@@ -36,7 +44,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div class="header">
@@ -49,7 +56,8 @@
             </h1>
             <div class="mallSearch">
                 <form action="" class="layui-form" novalidate>
-                    <input type="text" name="title" required  lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入需要的商品">
+                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入需要的商品">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">
                         <i class="layui-icon layui-icon-search"></i>
                     </button>
@@ -83,9 +91,9 @@
             <div class="th th-chk">
                 <div class="select-all">
                     <div class="cart-checkbox">
-                        <input class="check-all check" id="allCheckked" type="checkbox" value="true">
+                        <input class="check-all check" id="allCheckked" type="hidden" value="true">
                     </div>
-                    <label>&nbsp;&nbsp;全选</label>
+                    <label>&nbsp;&nbsp;</label>
                 </div>
             </div>
             <div class="th th-item">
@@ -116,108 +124,44 @@
         </div>
         <div class="OrderList">
             <div class="order-content" id="list-cont">
-                <%--<ul class="item-content layui-clear">--%>
-                    <%--<li class="th th-chk">--%>
-                        <%--<div class="select-all">--%>
-                            <%--<div class="cart-checkbox">--%>
-                                <%--<input class="CheckBoxShop check" id="" type="checkbox" num="all" name="select-all" value="true">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-item">--%>
-                        <%--<div class="item-cont">--%>
-                            <%--<a href="javascript:;"><img src="res/static/img/paging_img1.jpg" alt=""></a>--%>
-                            <%--<div class="text">--%>
-                                <%--<div class="title">宝宝T恤棉质小衫</div>--%>
-                                <%--<p><span>粉色</span>  <span>130</span>cm</p>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-price">--%>
-                        <%--<span class="th-su">189.00</span>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-amount">--%>
-                        <%--<div class="box-btn layui-clear">--%>
-                            <%--<div class="less layui-btn">-</div>--%>
-                            <%--<input class="Quantity-input" type="" name="" value="1" disabled="disabled">--%>
-                            <%--<div class="add layui-btn">+</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-sum">--%>
-                        <%--<span class="sum">189.00</span>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-op">--%>
-                        <%--<span class="dele-btn">删除</span>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-                <%--<ul class="item-content layui-clear">--%>
-                    <%--<li class="th th-chk">--%>
-                        <%--<div class="select-all">--%>
-                            <%--<div class="cart-checkbox">--%>
-                                <%--<input class="CheckBoxShop check"  type="checkbox" num="all" name="select-all" value="true">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--&lt;%&ndash;<li class="th th-item">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="item-cont">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<a href="javascript:;"><img src="res/static/img/paging_img2.jpg" alt=""></a>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<div class="text">&ndash;%&gt;--%>
-                                <%--&lt;%&ndash;<div class="title">宝宝T恤棉质小衫</div>&ndash;%&gt;--%>
-                                <%--&lt;%&ndash;<p><span>粉色</span>  <span>130</span>cm</p>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
-                    <%--<li class="th th-price">--%>
-                        <%--<span class="th-su">189.00</span>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-amount">--%>
-                        <%--<div class="box-btn layui-clear">--%>
-                            <%--<div class="less layui-btn">-</div>--%>
-                            <%--<input class="Quantity-input" type="" name="" value="1" disabled="disabled">--%>
-                            <%--<div class="add layui-btn">+</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-sum">--%>
-                        <%--<span class="sum">189.00</span>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-op">--%>
-                        <%--<span class="dele-btn">删除</span>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-                <%--<ul class="item-content layui-clear">--%>
-                    <%--<li class="th th-chk">--%>
-                        <%--<div class="select-all">--%>
-                            <%--<div class="cart-checkbox">--%>
-                                <%--<input class="CheckBoxShop check"  type="checkbox" num="all" name="select-all" value="true">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--&lt;%&ndash;<li class="th th-item">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="item-cont">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<a href="javascript:;"><img src="res/static/img/paging_img3.jpg" alt=""></a>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<div class="text">&ndash;%&gt;--%>
-                                <%--&lt;%&ndash;<div class="title">宝宝T恤棉质小衫</div>&ndash;%&gt;--%>
-                                <%--&lt;%&ndash;<p><span>粉色</span>  <span>130</span>cm</p>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
-                    <%--<li class="th th-price">--%>
-                        <%--<span class="th-su">189.00</span>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-amount">--%>
-                        <%--<div class="box-btn layui-clear">--%>
-                            <%--<div class="less layui-btn">-</div>--%>
-                            <%--<input class="Quantity-input" type="" name="" value="1" disabled="disabled">--%>
-                            <%--<div class="add layui-btn">+</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-sum">--%>
-                        <%--<span class="sum">189.00</span>--%>
-                    <%--</li>--%>
-                    <%--<li class="th th-op">--%>
-                        <%--<span class="dele-btn">删除</span>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
+                <c:forEach var="heroorders"
+                           items="<%=request.getAttribute(RegionValue.HERO_ORDERSALL)%>"
+                           varStatus="vars">
+                <c:set var="item" value="${heroorders.hero_commodity}"></c:set>
+                <ul class="item-content layui-clear">
+                    <li class="th th-chk">
+                    </li>
+                    <li class="th th-item">
+                        <div class="item-cont">
+                            <a href="${pageContext.request.contextPath}/hrefcarservlet?car_id=${heroorders.car_id}"><img src="${pageContext.request.contextPath}/res/static/img2/${item.c_imag}" alt=""></a>
+                            <div class="text">
+                                <div class="title">${item.c_name}</div>
+                                <p><span>${heroorders.hero_skin}</span>
+                                    <span>${item.c_describe}</span><br><br>
+                                    <span>${heroorders.createtime}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="th th-price">
+                        <span class="th-su">${item.c_proce}0</span>
+                    </li>
+                    <li class="th th-amount">
+                        <div class="box-btn layui-clear">
+                            <div class="less layui-btn">-</div>
+                            <input class="input-hidden" type="hidden" name="" value="${heroorders.car_id}">
+                            <input class="Quantity-input" type="" name="" value="${heroorders.buycount}" disabled="disabled">
+                            <div class="add layui-btn">+</div>
+                        </div>
+                    </li>
+                    <li class="th th-sum">
+                        <span class="sum">${item.c_proce*heroorders.buycount}0</span>
+                    </li>
+                    <li class="th th-op">
+                        <span class="dele-btn">删除</span>
+                    </li>
+                </ul>
+                </c:forEach>
             </div>
         </div>
 
@@ -264,22 +208,11 @@
 
 
         <div class="FloatBarHolder layui-clear">
-            <div class="th th-chk">
-                <div class="select-all">
-                    <div class="cart-checkbox">
-                        <input class="check-all check"  name="select-all" type="checkbox"  value="true">
-                    </div>
-                    <label>&nbsp;&nbsp;已选<span class="Selected-pieces">0</span>件</label>
-                </div>
-            </div>
-            <div class="th batch-deletion">
-                <span class="batch-dele-btn">批量删除</span>
-            </div>
             <div class="th Settlement">
-                <button class="layui-btn">结算</button>
+                <button class="layui-btn" id="nowcheck">主页</button>
             </div>
             <div class="th total">
-                <p>应付：<span class="pieces-total">0</span></p>
+                <p><span class="pieces-total"> </span></p>
             </div>
         </div>
     </div>
@@ -288,8 +221,8 @@
 <script type="text/javascript">
     layui.config({
         base: 'res/static/js/util/' //你存放新模块的目录，注意，不是layui的模块目录
-    }).use(['mm','jquery','element','car'],function(){
-        var mm = layui.mm,$ = layui.$,element = layui.element,car = layui.car;
+    }).use(['mm', 'jquery', 'element', 'car'], function () {
+        var mm = layui.mm, $ = layui.$, element = layui.element, car = layui.car;
 
         // 模版导入数据
         // var html = demo.innerHTML,
@@ -306,7 +239,15 @@
         //   }
         // })
         //
-        car.init()
+        $('#nowcheck').on('click', function () {
+            // layer.msg('修改失败', {time:500,icon: 1});
+            $(location).attr('href', "${pageContext.request.contextPath}/initservlet");
+
+        });
+        function fun1(){
+
+        }
+        car.init();
 
 
     });

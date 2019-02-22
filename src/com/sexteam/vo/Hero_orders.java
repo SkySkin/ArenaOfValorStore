@@ -8,6 +8,15 @@ public class Hero_orders {
     private int buycount;//购买数量
     private String hero_skin;//英雄皮肤
     private String orderstate;//订单状态
+    private String createtime;
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
 
     public String getOrderstate() {
         return orderstate;
@@ -75,6 +84,7 @@ public class Hero_orders {
                 ", buycount=" + buycount +
                 ", hero_skin='" + hero_skin + '\'' +
                 ", orderstate='" + orderstate + '\'' +
+                ", createtime='" + createtime + '\'' +
                 '}';
     }
 }

@@ -9,6 +9,8 @@ public class User {
     private String u_adds;
     private String u_emall;
     private String u_imag;
+    private int carcount;
+
 
     @Override
     public String toString() {
@@ -21,7 +23,16 @@ public class User {
                 ", u_adds='" + u_adds + '\'' +
                 ", u_emall='" + u_emall + '\'' +
                 ", u_imag='" + u_imag + '\'' +
+                ", carcount=" + carcount +
                 '}';
+    }
+
+    public int getCarcount() {
+        return carcount;
+    }
+
+    public void setCarcount(int carcount) {
+        this.carcount = carcount;
     }
 
     public int getU_id() {

@@ -61,6 +61,7 @@
         <div class="sn-quick-menu">
             <%
                 User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
+
             %>
             <c:set var="islogin" value="<%=(attribute!=null)%>"/>
             <%
@@ -69,7 +70,10 @@
             <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
                     href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
-            <div class="sp-cart"><a href="shopcart.jsp">购物车</a><span>2</span></div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]</span>
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allordersservlet"><span>我的订单</span></a></div>
+
             <%
             } else {
             %>
@@ -258,17 +262,32 @@
 
         function judgeislogin(a) {
             if (${islogin}) {
+                var count = $('#shopcount').val();
+                var heroskin = $('input[name="heroskin"]:checked').val();
                 if (a == 'nowbuy') {
                     var count = $('#shopcount').val();
                     var heroskin = $('input[name="heroskin"]:checked').val();
                     $(location).attr('href', "${pageContext.request.contextPath}/buyheroservlet?c_id=${item.c_id}&buycount="+count+"&hero_skin="+heroskin+"&JUDGEBUY=no");
                 } else {
-                    $(location).attr('href', '#');
+                    var htmlobj=$.ajax({url:"${pageContext.request.contextPath}/insertcarservlet?c_id=${item.c_id}&buycount="+count+"&hero_skin="+heroskin+"",async:false});
+                    var msg =htmlobj.responseText+"";
+                    if(msg.trim().length=="success".length){
+                        var str=$.ajax({url:"${pageContext.request.contextPath}/insertcarservlet?c_id=${item.c_id}&buycount="+count+"&hero_skin="+heroskin+"",async:false});
+                        var msg2 =str.responseText+"";
+
+                        layer.msg('加入购物车成功', {icon: 1});
+                    }else {
+                        layer.msg('加入购物车失败', {icon: 1});
+                    }
                 }
             } else {
                 layer.msg('亲，请先登录哦!');
             }
         }
+        <%--$(location).attr('href', "${pageContext.request.contextPath}/insertcarservlet?c_id=${item.c_id}&buycount="+count+"&hero_skin="+heroskin+"");--%>
+        // $(document).ready(function () {
+        //     layer.msg('的确很重要', {icon: 1});
+        // });
     });
 
 </script>

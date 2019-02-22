@@ -141,13 +141,24 @@ public class Hero_CommodityDaoImp implements Hero_CommodityDao {
     @Override
     public Hero_Commodity getHero_CommdityByC_id(String c_id) {
         Connection conn = DBHelper.getConn();
-        List<Hero_Commodity> list = new ArrayList<>();
+        Hero_Commodity commodity=null;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from hero_commodity where c_id=?");
             preparedStatement.setString(1,c_id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            baseTobean(list,resultSet);
-            return list.get(0);
+            while (resultSet.next()){
+                commodity = new Hero_Commodity();
+                commodity.setC_id(resultSet.getString("c_id"));
+                commodity.setC_count(resultSet.getInt("c_count"));
+                commodity.setC_describe(resultSet.getString("c_describe"));
+                commodity.setC_imag(resultSet.getString("c_imag"));
+                commodity.setC_name(resultSet.getString("c_name"));
+                commodity.setC_place(resultSet.getString("c_place"));
+                commodity.setC_sales(resultSet.getInt("c_sales"));
+                commodity.setType_id(resultSet.getInt("type_id"));
+                commodity.setC_proce(resultSet.getFloat("c_proce"));
+            }
+            return commodity;
         } catch (SQLException e) {
             e.printStackTrace();
         }

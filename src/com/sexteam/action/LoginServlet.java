@@ -1,6 +1,8 @@
 package com.sexteam.action;
 
+import com.sexteam.service.CarService;
 import com.sexteam.service.UserService;
+import com.sexteam.service.imp.CarServiceImp;
 import com.sexteam.service.imp.UserServeiceImp;
 import com.sexteam.util.RegionValue;
 import com.sexteam.vo.User;
@@ -18,6 +20,7 @@ import java.util.Map;
 
 @WebServlet(name = "LoginServlet",urlPatterns = "/loginservlet")
 public class LoginServlet extends HttpServlet {
+    private CarService carService;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
@@ -35,6 +38,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
         User user = new User();
+        carService=new CarServiceImp();
         Map<String, String[]> parameterMap = request.getParameterMap();
         try {
             BeanUtils.populate(user,parameterMap);
@@ -44,6 +48,8 @@ public class LoginServlet extends HttpServlet {
 //            System.out.println(user1);
             if(user1!=null){
                 //表示登录成功
+                int count= carService.getCarCountByU_id(user1.getU_id());
+                user1.setCarcount(count);
                 request.getSession().setAttribute(RegionValue.USER_MSG,user1);
                 response.sendRedirect("initservlet");
                 return;

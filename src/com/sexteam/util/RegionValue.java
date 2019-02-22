@@ -40,5 +40,9 @@ public class RegionValue {
     public static final String HERO_ORDERS_JUDGE = "HERO_ORDERS_JUDGE";
     public static final String JUDGEBUY = "JUDGEBUY";
     public static final String JUDGEADDORDER = "JUDGEADDORDER";
+    public static final String ORDERCHECKOUT = "ORDERCHECKOUT";
+    public static final String HERO_ORDERSALL = "HERO_ORDERSALL";
+    public static final String error = "error";
+    public static final String success = "success";
 
 }

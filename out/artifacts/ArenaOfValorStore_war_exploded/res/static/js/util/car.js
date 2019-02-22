@@ -4,9 +4,11 @@
 *@Copyright:layui.com
 */
 
-layui.define(['layer'],function(exports){
+layui.define(['layer','jquery'],function(exports){
 	var layer = layui.layer;
-	
+    var $ = layui.jquery;
+
+
 var car = {
   init : function(){
   		var uls = document.getElementById('list-cont').getElementsByTagName('ul');//每一行
@@ -28,8 +30,18 @@ var car = {
           piecesTotal.innerHTML = '￥' + price.toFixed(2);
       }
 
-      function fn1(){
+      function deleteCar(){
         alert(1)
+      }
+      function updateCar(count,cid,input){
+          var htmlobj=$.ajax({url:"updatecarservlet?car_id="+cid+"&buycount="+count+"",async:false});
+          var msg =htmlobj.responseText+"";
+          if(msg.trim().length=="success".length){
+              layer.msg('修改成功', {time:500,icon: 1});
+              input.value = count;
+          }else {
+              layer.msg('修改失败', {time:500,icon: 1});
+          }
       }
       // 小计
       function getSubTotal(ul){
@@ -61,25 +73,32 @@ var car = {
           var el = e.srcElement;
           var cls = el.className;
           var input = this.getElementsByClassName('Quantity-input')[0];
+          var carid = this.getElementsByClassName('input-hidden')[0];
           var less = this.getElementsByClassName('less')[0];
           var val = parseInt(input.value);
           var that = this;
           switch(cls){
             case 'add layui-btn':
-              input.value = val + 1;
-              getSubTotal(this)
+                var count=val + 1;
+                var cid=carid.value;
+                updateCar(count,cid,input);
+                getSubTotal(this);
               break;
             case 'less layui-btn':
               if(val > 1){
-                input.value = val - 1;
+                  var count = val - 1;
+                  var cid=carid.value;
+                  updateCar(count,cid,input);
               }
-              getSubTotal(this)
+              getSubTotal(this);
               break;
             case 'dele-btn':
               layer.confirm('你确定要删除吗',{
                 yes:function(index,layero){
                   layer.close(index)
                   that.parentNode.removeChild(that);
+                  //   $(location).attr('href', "initservlet");
+                    // deleteCar();
                 }
               })
               break;
@@ -95,22 +114,22 @@ var car = {
               for(var i = 0;i < uls.length;i++){
                 var input = uls[i].getElementsByTagName('input')[0];
                 if(input.checked){
-                  uls[i].parentNode.removeChild(uls[i]); 
+                  uls[i].parentNode.removeChild(uls[i]);
                   i--;
                 }
               }
-              getTotal() 
+              getTotal()
             }
 
           })
         }else{
           layer.msg('请选择商品')
         }
-        
+
       }
         checkAll[0].checked = true;
         checkAll[0].onclick();
-  	  }  	
+  	  }
 
   }
 

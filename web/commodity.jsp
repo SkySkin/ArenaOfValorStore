@@ -73,8 +73,12 @@
                 User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
                 if (attribute != null) {
             %>
-            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-            <div class="sp-cart"><a href="shopcart.jsp">购物车</a><span>[2]</span></div>
+            <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
+                    href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]&nbsp;&nbsp;&nbsp;</span></div>
+            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allordersservlet"><span>我的订单</span></a>
+            </div>
             <%
             } else {
             %>
@@ -140,11 +144,13 @@
                             <c:set var="listcomm" value="${type.commodityList}"></c:set>
                             <c:if test="${commditytype.type_id==type.type_id}">
                                 <dt class="" off="">${type.type_name}</dt>
-                            <dd class="layui-bg-cyan"><a
-                                    href="${pageContext.request.contextPath}/commtitytypeservlet?type_id=${type.type_id}&type_name=${type.type_name}">右侧展示</a>
-                            </dd>
+                                <dd class="layui-bg-cyan"><a
+                                        href="${pageContext.request.contextPath}/commtitytypeservlet?type_id=${type.type_id}&type_name=${type.type_name}">右侧展示</a>
+                                </dd>
                                 <c:forEach var="comm" items="${listcomm}">
-                                    <dd><a href="${pageContext.request.contextPath}/detailsservlet?c_id=${comm.c_id}">${comm.c_name}</a></dd>
+                                    <dd>
+                                        <a href="${pageContext.request.contextPath}/detailsservlet?c_id=${comm.c_id}">${comm.c_name}</a>
+                                    </dd>
                                 </c:forEach>
                             </c:if>
                             <c:if test="${commditytype.type_id!=type.type_id}">
@@ -153,7 +159,9 @@
                                         href="${pageContext.request.contextPath}/commtitytypeservlet?type_id=${type.type_id}&type_name=${type.type_name}">右侧展示</a>
                                 </dd>
                                 <c:forEach var="comm" items="${listcomm}">
-                                    <dd style="display: none;"><a style="" href="${pageContext.request.contextPath}/detailsservlet?c_id=${comm.c_id}">${comm.c_name}</a></dd>
+                                    <dd style="display: none;"><a style=""
+                                                                  href="${pageContext.request.contextPath}/detailsservlet?c_id=${comm.c_id}">${comm.c_name}</a>
+                                    </dd>
                                 </c:forEach>
                             </c:if>
 
@@ -256,9 +264,10 @@
 
     layui.config({
         base: 'res/static/js/util/' //你存放新模块的目录，注意，不是layui的模块目录
-    }).use(['mm', 'laypage', 'jquery'], function () {
+    }).use(['mm', 'laypage', 'jquery', 'layer'], function () {
         var laypage = layui.laypage, $ = layui.$,
             mm = layui.mm;
+        var layer = layui.layer;
         laypage.render({
             elem: 'demo0'
             , count: 100 //数据总数
@@ -291,7 +300,16 @@
                 $(this).addClass('active').siblings('dd').hide()
                 $(this).attr('off', true)
             }
-        })
+        });
+        $(document).ready(function () {
+            var a = ${checkoutjudge}+"";
+            if (a == "true") {
+                layer.msg('亲，订单支付成功了ღ');
+            }
+            if (a == "false") {
+                layer.msg('亲，订单支付失败了☂');
+            }
+        });
 
     });
 </script>
