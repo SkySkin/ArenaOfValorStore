@@ -6,83 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee53a31a-a449-490d-b514-a6ee2248c168" name="Default" comment="这是自动生成的">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/AllCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/AllCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/AllOrdersServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/AllOrdersServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/BuyHeroServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/BuyHeroServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/CommodityServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/CommodityServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/CommtityTypeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/CommtityTypeServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/InsertCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/InsertCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/OrderCheckOutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/OrderCheckOutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/UpdateCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/UpdateCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/util/HrefCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/util/HrefCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/util/InitServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/action/util/InitServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/CarDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/CarDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/Commodity_TypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/Commodity_TypeDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/Hero_CommodityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/Hero_CommodityDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/CarDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/CarDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/Commodity_TypeDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/Commodity_TypeDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/Hero_CommodityDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/Hero_CommodityDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/Hero_ordersDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/dao/imp/Hero_ordersDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/CarService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/CarService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/Hero_CommodityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/Hero_CommodityService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/imp/CarServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/imp/CarServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/imp/Hero_CommodityServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/service/imp/Hero_CommodityServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/test/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/WEB-INF/classes/com/sexteam/test/test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/about.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/about.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/allorders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/allorders.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/buytoday.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/buytoday.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/commodity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/commodity.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/commoditybytype.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/commoditybytype.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/detailsjudge.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/detailsjudge.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/information.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/information.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/payprice.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/payprice.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/res/static/js/util/car.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/res/static/js/util/car.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/shopcart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ArenaOfValorStore_war_exploded/shopcart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/AllCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/AllCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/AllOrdersServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/AllOrdersServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/BuyHeroServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/BuyHeroServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/CommodityServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/CommodityServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/CommtityTypeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/CommtityTypeServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/InsertCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/InsertCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/OrderCheckOutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/OrderCheckOutServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/UpdateCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/UpdateCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/util/HrefCarServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/util/HrefCarServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/util/InitServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/action/util/InitServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/CarDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/CarDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/Commodity_TypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/Commodity_TypeDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/Hero_CommodityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/Hero_CommodityDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/CarDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/CarDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/Commodity_TypeDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/Commodity_TypeDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/Hero_CommodityDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/Hero_CommodityDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/Hero_ordersDaoImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/dao/imp/Hero_ordersDaoImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/CarService.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/CarService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/Hero_CommodityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/Hero_CommodityService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/imp/CarServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/imp/CarServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/imp/Hero_CommodityServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/service/imp/Hero_CommodityServiceImp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/test/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/sexteam/test/test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/about.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/about.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/allorders.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/allorders.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/buytoday.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/buytoday.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/commodity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/commodity.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/commoditybytype.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/commoditybytype.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/detailsjudge.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/detailsjudge.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/information.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/information.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/payprice.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/payprice.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/res/static/img/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/web/res/static/img/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/res/static/js/util/car.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/res/static/js/util/car.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/shopcart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/shopcart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/testsearch.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/testsearch.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="ee53a31a-a449-490d-b514-a6ee2248c168" name="Default" comment="这是自动生成的" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -292,7 +216,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="20" />
     <option name="y" value="121" />
     <option name="width" value="1127" />
@@ -317,41 +241,6 @@
             <path>
               <item name="ArenaOfValorStore" type="b2602c69:ProjectViewProjectNode" />
               <item name="ArenaOfValorStore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArenaOfValorStore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArenaOfValorStore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArenaOfValorStore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArenaOfValorStore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="sexteam" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArenaOfValorStore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArenaOfValorStore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="sexteam" type="462c0819:PsiDirectoryNode" />
-              <item name="action" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArenaOfValorStore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArenaOfValorStore" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="sexteam" type="462c0819:PsiDirectoryNode" />
-              <item name="action" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArenaOfValorStore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArenaOfValorStore" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -366,14 +255,6 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArenaOfValorStore" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArenaOfValorStore" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -746,7 +627,7 @@
       <workItem from="1551488288679" duration="4613000" />
       <workItem from="1551667989565" duration="2090000" />
       <workItem from="1551837686584" duration="1456000" />
-      <workItem from="1551841004608" duration="723000" />
+      <workItem from="1551841004608" duration="1326000" />
     </task>
     <task id="LOCAL-00001" summary="这是自动生成的">
       <created>1550651038348</created>
@@ -791,10 +672,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="375906000" />
+    <option name="totallyTimeSpent" value="376509000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
