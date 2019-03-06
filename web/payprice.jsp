@@ -1,9 +1,12 @@
 <%@ page import="com.sexteam.util.RegionValue" %>
 <%@ page import="com.sexteam.vo.User" %>
+<%@ page import="com.sexteam.service.CarService" %>
+<%@ page import="com.sexteam.service.imp.CarServiceImp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="shortcut icon" href="res/static/img/favicon.ico">
     <meta charset="UTF-8">
     <title>购物车</title>
     <link rel="stylesheet" type="text/css" href="res/static/css/main.css">
@@ -13,6 +16,34 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 </head>
+<style>
+    div.suggest {
+        width: 437px;
+        background-color: #fff;
+        border: 1px solid #999;
+        font-size: 18px;
+        overflow: hidden;
+        display: none;
+    }
+
+    .suggest ul li {
+        width: 522px;
+        color: #000;
+        font: 14px arial;
+        line-height: 25px;
+        height: 25px;
+        padding: 0 8px;
+        position: relative;
+        cursor: default;
+        display: list-item;
+    }
+
+    .suggest ul li:hover {
+        background: #f0f0f0;
+        cursor: pointer;
+    }
+
+</style>
 <body style="height: 100%">
 <div class="site-nav-bg" style="position: fixed;z-index: 1030;width: 100%">
     <div class="site-nav w1200">
@@ -24,7 +55,9 @@
 
             <%
                 User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
+
                 if (attribute != null) {
+
             %>
             <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
                     href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -58,13 +91,17 @@
                 </a>
             </h1>
             <div class="mallSearch">
-                <form action="" class="layui-form" novalidate>
-                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
-                           class="layui-input" placeholder="请输入需要的商品">
+                <form  id="from-search" novalidate onsubmit="return check();">
+                    <input type="text" id="search-input"  required lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入 名称 / 分类">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">
                         <i class="layui-icon layui-icon-search"></i>
                     </button>
                     <input type="hidden" name="" value="">
+                    <div id="search-from-db" type="0" class="suggest" style="position: absolute;top: 40px;left: -2px">
+                        <ul id="search-result">
+                        </ul>
+                    </div>
                 </form>
             </div>
         </div>
@@ -79,7 +116,6 @@
                 <div class="inner-cont2">
                     <a href="${pageContext.request.contextPath}/initservlet">所有商品</a>
                     <a href="buytoday.jsp">今日团购</a>
-                    <a href="information.jsp">王者资讯</a>
                     <a href="about.jsp">关于我们</a>
                 </div>
             </div>
@@ -181,6 +217,93 @@
     }).use(['mm', 'jquery', 'element', 'car'], function () {
         var mm = layui.mm, $ = layui.$, element = layui.element, car = layui.car;
         var layer = layui.layer;
+        var msg;
+        $('#search-input').focus(function (ev) {
+            if ($($('#search-result li')[0]).text() != "") {
+                $('#search-from-db').attr("type", "1");
+                $('#search-from-db').show();
+            }
+        });
+        $('#from-search').on('click', function (ev) {
+            if ($($('#search-result li')[0]).text() != "") {
+                $('#search-from-db').attr("type", "1");
+                $('#search-from-db').show();
+            }
+        });
+        $('#search-input').bind('keyup', function (a) {
+            var length;
+            var searchText = $(this).val();
+            var html = "";
+            var s;
+            if (searchText.trim() == "") {
+                $('#search-from-db').hide();
+                return;
+            }
+            $.get("${pageContext.request.contextPath}/searchservlet?q=" + searchText + "", function (a) {
+                s = a.s;
+                msg = a.msg;
+                length = s.length;
+                var index=0;
+                if (length > 0) {
+                    for (var i = 0; i < s.length; i++) {
+                        html += "<li id=M" + i + ">" + s[i] + "</li>";
+                        $('#search-result').html(html);
+
+                    }
+                    $('#search-from-db').show();
+                }
+            }, 'json');
+
+        });
+        window.check=function (){
+            if (msg[0].type == "c_id") {
+                var cid = msg[0].sign;
+                var href1 = "${pageContext.request.contextPath}/detailsservlet?c_id=" + cid + "";
+                $(location).attr('href', href1);
+                return false;
+            }
+            if (msg[0].type == "type_id") {
+                var type_id = msg[0].sign;
+                var name = msg[0].name;
+                var href2 = "${pageContext.request.contextPath}/commtitytypeservlet?type_id=" + type_id + "&type_name=" + name + "";
+                $(location).attr('href', href2);
+                return false;
+            }
+
+            return false;
+        }
+
+        $("#search-result").on('click', 'li', function () {
+            var attr = $(this).attr("id");
+            var replace = attr.replace('M', "");
+            var number = parseInt(replace);
+            var actionpath = "";
+            if (msg[number].type == "c_id") {
+                var cid = msg[number].sign;
+                var href = "${pageContext.request.contextPath}/detailsservlet?c_id=" + cid + "";
+                $(location).attr('href', href);
+                return;
+            }
+            if (msg[number].type == "type_id") {
+                var type_id = msg[number].sign;
+                var name = msg[number].name;
+                var href = "${pageContext.request.contextPath}/commtitytypeservlet?type_id=" + type_id + "&type_name=" + name + "";
+                $(location).attr('href', href);
+                return;
+            }
+
+        });
+        $(document).on('click', function (ev) {
+            var attr = $('#search-from-db').attr("type");
+            if (attr == "1") {
+                $('#search-from-db').attr("type", "0")
+                return
+            } else {
+                $('#search-from-db').attr("type", "0")
+                $('#search-from-db').hide();
+            }
+
+        });
         // car.init();
         $('#nowcheck').on('click', function () {
             $(location).attr('href', "${pageContext.request.contextPath}/ordercheckoutservlet?o_id=${heroorders.o_id}");

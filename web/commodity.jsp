@@ -1,5 +1,7 @@
 <%@ page import="com.sexteam.util.RegionValue" %>
-<%@ page import="com.sexteam.vo.User" %><%--
+<%@ page import="com.sexteam.vo.User" %>
+<%@ page import="com.sexteam.service.CarService" %>
+<%@ page import="com.sexteam.service.imp.CarServiceImp" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/12/16
@@ -11,6 +13,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
+    <link rel="shortcut icon" href="res/static/img/favicon.ico">
     <meta charset="UTF-8">
     <title>王者商城</title>
     <link rel="stylesheet" type="text/css" href="res/static/css/main.css">
@@ -58,8 +61,35 @@
         ul.pagination li a:hover:not(.active) {
             background-color: #ddd;
         }
+
+        div.suggest {
+            width: 437px;
+            background-color: #fff;
+            border: 1px solid #999;
+            font-size: 18px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .suggest ul li {
+            width: 522px;
+            color: #000;
+            font: 14px arial;
+            line-height: 25px;
+            height: 25px;
+            padding: 0 8px;
+            position: relative;
+            cursor: default;
+            display: list-item;
+        }
+
+        .suggest ul li:hover {
+            background: #f0f0f0;
+            cursor: pointer;
+        }
     </style>
 </head>
+
 <body style="height: 100%">
 
 <div class="site-nav-bg" style="position: fixed;z-index: 1030;width: 100%">
@@ -72,11 +102,14 @@
             <%
                 User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
                 if (attribute != null) {
+
             %>
             <div class="sp-cart">欢迎您:&nbsp;<span><a href="#" style="color: #ff5500"><%=attribute.getU_name()%>&nbsp;&nbsp;&nbsp;&nbsp;<a/></span><span><a
                     href="${pageContext.request.contextPath}/logoutservlet">[注销]</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
-            <div class="sp-cart"><a href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]&nbsp;&nbsp;&nbsp;</span></div>
+            <div class="sp-cart"><a
+                    href="${pageContext.request.contextPath}/allcarservlet">购物车</a><span>[<%=attribute.getCarcount()%>]&nbsp;&nbsp;&nbsp;</span>
+            </div>
             <div class="sp-cart"><a href="${pageContext.request.contextPath}/allordersservlet"><span>我的订单</span></a>
             </div>
             <%
@@ -102,13 +135,17 @@
                 </a>
             </h1>
             <div class="mallSearch">
-                <form action="" class="layui-form" novalidate>
-                    <input type="text" name="title" required lay-verify="required" autocomplete="off"
-                           class="layui-input" placeholder="请输入需要的商品">
+                <form id="from-search" novalidate onsubmit="return check();">
+                    <input type="text" id="search-input" required lay-verify="required" autocomplete="off"
+                           class="layui-input" placeholder="请输入 名称 / 分类">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">
                         <i class="layui-icon layui-icon-search"></i>
                     </button>
                     <input type="hidden" name="" value="">
+                    <div id="search-from-db" type="0" class="suggest" style="position: absolute;top: 40px;left: -2px">
+                        <ul id="search-result">
+                        </ul>
+                    </div>
                 </form>
             </div>
         </div>
@@ -268,9 +305,92 @@
         var laypage = layui.laypage, $ = layui.$,
             mm = layui.mm;
         var layer = layui.layer;
-        laypage.render({
-            elem: 'demo0'
-            , count: 100 //数据总数
+        var msg;
+        $('#search-input').focus(function (ev) {
+            if ($($('#search-result li')[0]).text() != "") {
+                $('#search-from-db').attr("type", "1");
+                $('#search-from-db').show();
+            }
+        });
+        $('#from-search').on('click', function (ev) {
+            if ($($('#search-result li')[0]).text() != "") {
+                $('#search-from-db').attr("type", "1");
+                $('#search-from-db').show();
+            }
+        });
+        $('#search-input').bind('keyup', function (a) {
+            var length;
+            var searchText = $(this).val();
+            var html = "";
+            var s;
+            if (searchText.trim() == "") {
+                $('#search-from-db').hide();
+                return;
+            }
+            $.get("${pageContext.request.contextPath}/searchservlet?q=" + searchText + "", function (a) {
+                s = a.s;
+                msg = a.msg;
+                length = s.length;
+                var index = 0;
+                if (length > 0) {
+                    for (var i = 0; i < s.length; i++) {
+                        html += "<li id=M" + i + ">" + s[i] + "</li>";
+                        $('#search-result').html(html);
+
+                    }
+                    $('#search-from-db').show();
+                }
+            }, 'json');
+
+        });
+        window.check = function () {
+            if (msg[0].type == "c_id") {
+                var cid = msg[0].sign;
+                var href1 = "${pageContext.request.contextPath}/detailsservlet?c_id=" + cid + "";
+                $(location).attr('href', href1);
+                return false;
+            }
+            if (msg[0].type == "type_id") {
+                var type_id = msg[0].sign;
+                var name = msg[0].name;
+                var href2 = "${pageContext.request.contextPath}/commtitytypeservlet?type_id=" + type_id + "&type_name=" + name + "";
+                $(location).attr('href', href2);
+                return false;
+            }
+
+            return false;
+        }
+
+        $("#search-result").on('click', 'li', function () {
+            var attr = $(this).attr("id");
+            var replace = attr.replace('M', "");
+            var number = parseInt(replace);
+            var actionpath = "";
+            if (msg[number].type == "c_id") {
+                var cid = msg[number].sign;
+                var href = "${pageContext.request.contextPath}/detailsservlet?c_id=" + cid + "";
+                $(location).attr('href', href);
+                return;
+            }
+            if (msg[number].type == "type_id") {
+                var type_id = msg[number].sign;
+                var name = msg[number].name;
+                var href = "${pageContext.request.contextPath}/commtitytypeservlet?type_id=" + type_id + "&type_name=" + name + "";
+                $(location).attr('href', href);
+                return;
+            }
+
+        });
+        $(document).on('click', function (ev) {
+            var attr = $('#search-from-db').attr("type");
+            if (attr == "1") {
+                $('#search-from-db').attr("type", "0")
+                return
+            } else {
+                $('#search-from-db').attr("type", "0")
+                $('#search-from-db').hide();
+            }
+
         });
 
 
@@ -302,13 +422,21 @@
             }
         });
         $(document).ready(function () {
-            var a = ${checkoutjudge}+"";
-            if (a == "true") {
-                layer.msg('亲，订单支付成功了ღ');
-            }
-            if (a == "false") {
-                layer.msg('亲，订单支付失败了☂');
-            }
+            <%
+                String attribute1 = (String) request.getSession().getAttribute("checkoutjudge");
+                if(attribute1!=null){
+                    if(attribute1.equals("true")){
+                %>
+                    layer.msg('亲，订单支付成功了ღ');
+            <%
+                    request.getSession().setAttribute("checkoutjudge","have");
+                    }if(attribute1.equals("false")) {
+                %>
+                    layer.msg('亲，订单支付失败了☂');
+            <%
+                    }
+                }
+            %>
         });
 
     });

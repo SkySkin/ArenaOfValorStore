@@ -95,10 +95,19 @@ var car = {
             case 'dele-btn':
               layer.confirm('你确定要删除吗',{
                 yes:function(index,layero){
-                  layer.close(index)
-                  that.parentNode.removeChild(that);
-                  //   $(location).attr('href', "initservlet");
-                    // deleteCar();
+                    var str=$.ajax({url:"delcarservlete?car_id="+carid.value+"",async:false});
+                    var msg =str.responseText+"";
+                    if(msg.trim().length=="success".length){
+                        var carcount= $('#carcount').text();
+                        var replace = carcount.replace(/^\[+|\]+$/g,'');
+                        var count=parseInt(replace)-1;
+                        $('#carcount').text("["+count+"]");
+                        layer.msg('删除成功', {time:900,icon: 1});
+                        layer.close(index)
+                        that.parentNode.removeChild(that);
+                    }else {
+                        layer.msg('删除失败', {time:900,icon: 1});
+                    }
                 }
               })
               break;
