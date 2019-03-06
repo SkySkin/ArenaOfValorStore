@@ -14,7 +14,7 @@ public interface Hero_CommodityDao {
 //    //根据商品全名查找商品
 //    CommodityBeans getCommdityByName(String name);
 //    //修改商品信息（当库存发生改变，用户购买后，进行库存修改）
-//    CommodityBeans UpdateCommdity(CommodityBeans commodityBeans);
+    boolean UpdateCommdity(Hero_Commodity hero_Commodity);
 //    //根据商品id查找商品
 //    CommodityBeans getCommdityById(String id);
 //    //商品的模糊查询，根据关键字

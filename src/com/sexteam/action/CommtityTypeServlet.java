@@ -35,14 +35,19 @@ public class CommtityTypeServlet extends HttpServlet {
         }
         hero_commodityService = new Hero_CommodityServiceImp();
         try {
-            Commodity_Type typeBytypeid = hero_commodityService.getTypeBytypeid(Integer.parseInt(type_id));
-            PageBean<Hero_Commodity> hero_commdityByTpye_id = hero_commodityService.getHero_CommdityByTpye_id(Integer.parseInt(type_id), pageNumber, RegionValue.HERO_COMMODITY_PAGESIZE);
+            if(type_id!=null){
+                Commodity_Type typeBytypeid = hero_commodityService.getTypeBytypeid(Integer.parseInt(type_id));
+                PageBean<Hero_Commodity> hero_commdityByTpye_id = hero_commodityService.getHero_CommdityByTpye_id(Integer.parseInt(type_id), pageNumber, RegionValue.HERO_COMMODITY_PAGESIZE);
 //            System.out.println("size:"+hero_commdityByTpye_id.getList().size());
 //            System.out.println("getStart:"+hero_commdityByTpye_id.getStart());
 //            System.out.println("getEnd:"+hero_commdityByTpye_id.getEnd());
-            request.setAttribute(RegionValue.HERO_COMMDITYBYTPYE_ID, hero_commdityByTpye_id);
-            request.setAttribute(RegionValue.HERO_TYPE,typeBytypeid);
-            request.getRequestDispatcher("commodityservlet").forward(request, response);
+                request.setAttribute(RegionValue.HERO_COMMDITYBYTPYE_ID, hero_commdityByTpye_id);
+                request.setAttribute(RegionValue.HERO_TYPE,typeBytypeid);
+                request.getRequestDispatcher("commodityservlet").forward(request, response);
+                return;
+            }
+//            System.out.println("type_id:"+type_id);
+            response.sendRedirect("initservlet");
             return;
         } catch (SQLException e) {
             e.printStackTrace();

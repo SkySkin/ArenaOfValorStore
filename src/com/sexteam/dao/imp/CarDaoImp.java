@@ -129,4 +129,20 @@ public class CarDaoImp implements CarDao {
 
         return conunt;
     }
+
+    @Override
+    public boolean delCarByCarid(int i) {
+        Connection conn = DBHelper.getConn();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM car WHERE car_id=" + i + "");
+            int i1 = preparedStatement.executeUpdate();
+            if(i1==1){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

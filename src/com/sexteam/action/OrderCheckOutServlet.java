@@ -25,9 +25,11 @@ public class OrderCheckOutServlet extends HttpServlet {
         hero_ordersService = new Hero_ordersServiceImp();
         boolean b=hero_ordersService.updateOrderIsPay(o_id);
         if(b){
+            request.getSession().setAttribute("checkoutjudge","1");
             request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"success");
             response.sendRedirect("initservlet");
         }else {
+            request.getSession().setAttribute("checkoutjudge","1");
             request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"error");
             response.sendRedirect("initservlet");
         }

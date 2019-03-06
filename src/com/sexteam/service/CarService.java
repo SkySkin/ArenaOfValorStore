@@ -15,4 +15,5 @@ public interface CarService {
 
     int getCarCountByU_id(int u_id);
 
+    boolean delCarByCarid(int i);
 }

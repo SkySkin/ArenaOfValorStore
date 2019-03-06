@@ -1,7 +1,6 @@
 package com.sexteam.service.imp;
 
 import com.sexteam.dao.Commodity_TypeDao;
-import com.sexteam.dao.Hero_CommodityDao;
 import com.sexteam.dao.imp.Commodity_TypeDaoImp;
 import com.sexteam.dao.imp.Hero_CommodityDaoImp;
 import com.sexteam.service.Hero_CommodityService;
@@ -71,5 +70,17 @@ public class Hero_CommodityServiceImp implements Hero_CommodityService {
     @Override
     public Hero_Commodity getHero_CommdityByC_id(String c_id) {
         return hcd.getHero_CommdityByC_id(c_id);
+    }
+
+    @Override
+    public List<Commodity_Type> fuzzyQueryForHeroType(String q) {
+        List<Commodity_Type> list = ctd.fuzzyQueryForHeroType(q);
+        return list;
+    }
+
+    @Override
+    public List<Hero_Commodity> fuzzyQueryForHeroName(String q) {
+        List<Hero_Commodity> list = hcd.fuzzyQueryForHeroName(q);
+        return list;
     }
 }

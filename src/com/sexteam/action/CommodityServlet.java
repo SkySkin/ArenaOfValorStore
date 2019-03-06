@@ -32,6 +32,11 @@ public class CommodityServlet extends HttpServlet {
         hero_commodityService = new Hero_CommodityServiceImp();
         List<Commodity_Type> groupType = null;
         try {
+//            if(pageNumber==null){
+////                response.sendRedirect("initservlet");
+////                return;
+//            }else {
+
             groupType = hero_commodityService.getGroupType();
             PageBean<Hero_Commodity> sybase;
             Object attribute = request.getAttribute(RegionValue.HERO_COMMDITYBYTPYE_ID);
@@ -50,6 +55,8 @@ public class CommodityServlet extends HttpServlet {
             request.getRequestDispatcher("commodity.jsp").forward(request, response);
 //            response.sendRedirect("commodity.jsp");
             return;
+//            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

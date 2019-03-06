@@ -10,4 +10,7 @@ public interface Commodity_TypeDao {
     List<Commodity_Type> getAllCommodity_Type() ;
 
     Commodity_Type getTypeBytype_id(int type_id);
+//模糊查询
+    List<Commodity_Type> fuzzyQueryForHeroType(String q);
+
 }

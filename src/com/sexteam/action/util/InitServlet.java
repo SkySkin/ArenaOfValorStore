@@ -30,15 +30,18 @@ public class InitServlet extends HttpServlet {
             String attribute = (String) request.getSession().getAttribute(RegionValue.ORDERCHECKOUT);
             if(attribute!=null){
 //                System.out.println("attribute:"+attribute);
-                if(attribute.equals("success")){
-                    System.out.println("success");
-                    request.setAttribute("checkoutjudge","true");
-                    request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"");
-                }
-                if(attribute.equals("error")){
-                    System.out.println("error");
-                    request.setAttribute("checkoutjudge","false");
-                    request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"");
+                String have = (String) request.getSession().getAttribute("checkoutjudge");
+                if(have!=null&&have.equals("have")){
+                }else {
+                    if(attribute.equals("success")){
+                        request.getSession().setAttribute("checkoutjudge","true");
+                        request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"");
+
+                    }
+                    if(attribute.equals("error")){
+                        request.getSession().setAttribute("checkoutjudge","false");
+                        request.getSession().setAttribute(RegionValue.ORDERCHECKOUT,"");
+                    }
                 }
             }
             request.getRequestDispatcher("commodity.jsp").forward(request,response);

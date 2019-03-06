@@ -18,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "AllOrdersServlet",urlPatterns = "/allordersservlet")
 public class AllOrdersServlet extends HttpServlet {
     private Hero_ordersService hero_ordersService;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -28,7 +29,7 @@ public class AllOrdersServlet extends HttpServlet {
         User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
         if(attribute!=null){
             hero_ordersService= new Hero_ordersServiceImp();
-            List<Hero_OrdersAll> list=hero_ordersService.getAllOrders(attribute.getU_id());
+            List<Hero_OrdersAll> list= hero_ordersService.getAllOrders(attribute.getU_id());
             request.setAttribute(RegionValue.HERO_ORDERSALL,list);
             request.getRequestDispatcher("allorders.jsp").forward(request,response);
             return;

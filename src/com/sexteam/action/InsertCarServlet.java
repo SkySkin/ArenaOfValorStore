@@ -63,21 +63,26 @@ public class InsertCarServlet extends HttpServlet {
         } else {
             flag = false;
         }
-        if(hero_orders.getBuycount()==0){
-            flag=false;
+        if (hero_orders.getBuycount() == 0) {
+            flag = false;
         }
-        if(hero_orders.getHero_skin()==null){
-            flag=false;
+        if (hero_orders.getHero_skin() == null) {
+            flag = false;
         }
-        if(flag){
-            boolean b=carService.addToCar(hero_orders);
-            if(b){
-            response.getWriter().println(RegionValue.success);
-            return;
+        if (flag) {
+            boolean b = carService.addToCar(hero_orders);
+            if (b) {
+                User attribute = (User) request.getSession().getAttribute(RegionValue.USER_MSG);
+                if (attribute != null) {
+                    attribute.setCarcount(attribute.getCarcount() + 1);
+                }
+                request.getSession().setAttribute(RegionValue.USER_MSG, attribute);
+                response.getWriter().println(RegionValue.success);
+                return;
             }
             response.getWriter().println(RegionValue.error);
             return;
-        }else {
+        } else {
             response.getWriter().println(RegionValue.error);
             return;
         }

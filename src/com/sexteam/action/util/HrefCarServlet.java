@@ -28,9 +28,8 @@ public class HrefCarServlet extends HttpServlet {
         carService= new CarServiceImp();
         Car car = carService.getCarByCid(Integer.parseInt(car_id));
         if(car!=null){
-            System.out.println(car);
             String hero_skin =URLEncoder.encode(car.getHero_skin(),"UTF-8");
-            response.sendRedirect("buyheroservlet?c_id="+car.getHero_commodity().getC_id()+"&buycount="+car.getBuycount()+"&hero_skin="+hero_skin+"&JUDGEBUY=no");
+            response.sendRedirect("buyheroservlet?c_id="+car.getHero_commodity().getC_id()+"&buycount="+car.getBuycount()+"&hero_skin="+hero_skin+"&JUDGEBUY=no&car_id="+car_id+"");
             return;
         }
         response.sendRedirect("allcarservlet");

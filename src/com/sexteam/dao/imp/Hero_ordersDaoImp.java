@@ -4,6 +4,7 @@ import com.sexteam.dao.Hero_CommodityDao;
 import com.sexteam.dao.Hero_ordersDao;
 import com.sexteam.dao.UserDao;
 import com.sexteam.util.DBHelper;
+import com.sexteam.vo.Hero_Commodity;
 import com.sexteam.vo.Hero_OrdersAll;
 import com.sexteam.vo.Hero_orders;
 import com.sexteam.vo.User;
@@ -29,7 +30,7 @@ public class Hero_ordersDaoImp implements Hero_ordersDao {
         DateFormat dateFormat= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO hero_orders(c_id,o_shippingaddress,u_id,buycount,hero_skin,createtime) VALUES(?,?,?,?,?,?)");
-            System.out.println("===:"+hero_orders);
+//            System.out.println("===:"+hero_orders);
             preparedStatement.setString(1,hero_orders.getC_id());
             preparedStatement.setString(2,hero_orders.getO_shippingaddress());
             preparedStatement.setInt(3,hero_orders.getU_id());
@@ -77,10 +78,34 @@ public class Hero_ordersDaoImp implements Hero_ordersDao {
     @Override
     public boolean updateOrderIsPay(Integer o_id) {
         Connection conn = DBHelper.getConn();
+        Hero_orders hero_orders=null;
+        hero_commodityDao=new Hero_CommodityDaoImp();
+        Hero_Commodity hero_commdityByC_id=null;
+        boolean b=false;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("UPDATE hero_orders SET orderstate='支付完成' where  o_id=" + o_id + "");
+            PreparedStatement preparedStatement1 = conn.prepareStatement("select * from hero_orders where o_id=" + o_id + "");
             int i = preparedStatement.executeUpdate();
-            if(i==1){
+            ResultSet resultSet = preparedStatement1.executeQuery();
+            while (resultSet.next()){
+                hero_orders = new Hero_orders();
+                hero_orders.setO_id(resultSet.getInt("o_id"));
+                hero_orders.setC_id(resultSet.getString("c_id"));
+                hero_orders.setO_shippingaddress(resultSet.getString("o_shippingaddress"));
+                hero_orders.setU_id(resultSet.getInt("u_id"));
+                hero_orders.setBuycount(resultSet.getInt("buycount"));
+                hero_orders.setHero_skin(resultSet.getString("hero_skin"));
+                hero_orders.setOrderstate(resultSet.getString("orderstate"));
+            }
+            if(hero_orders!=null){
+                hero_commdityByC_id = hero_commodityDao.getHero_CommdityByC_id(hero_orders.getC_id());
+            }
+            if(hero_commdityByC_id!=null) {
+                hero_commdityByC_id.setC_sales(hero_commdityByC_id.getC_sales()+1);
+                hero_commdityByC_id.setC_count(hero_commdityByC_id.getC_count()-hero_orders.getBuycount());
+                b= hero_commodityDao.UpdateCommdity(hero_commdityByC_id);
+            }
+            if(i==1&&b){
                 return true;
             }
         } catch (SQLException e) {

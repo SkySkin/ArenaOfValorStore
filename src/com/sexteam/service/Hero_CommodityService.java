@@ -19,4 +19,8 @@ public interface Hero_CommodityService {
     Commodity_Type getTypeBytypeid(int type_id);
 
     Hero_Commodity getHero_CommdityByC_id(String c_id);
+    //模糊查询类别
+    List<Commodity_Type> fuzzyQueryForHeroType(String q);
+
+    List<Hero_Commodity> fuzzyQueryForHeroName(String q);
 }

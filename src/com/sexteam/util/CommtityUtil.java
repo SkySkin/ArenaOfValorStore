@@ -28,4 +28,5 @@ public class CommtityUtil {
         PageBean<Hero_Commodity> sybase = hero_commodityService.getSybase(1, RegionValue.HERO_COMMODITY_PAGESIZE);
         request.setAttribute(RegionValue.HERO_COMMODITY_INITPAGE,sybase);
     }
+
 }

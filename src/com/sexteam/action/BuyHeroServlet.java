@@ -1,6 +1,8 @@
 package com.sexteam.action;
 
+import com.sexteam.service.CarService;
 import com.sexteam.service.Hero_ordersService;
+import com.sexteam.service.imp.CarServiceImp;
 import com.sexteam.service.imp.Hero_ordersServiceImp;
 import com.sexteam.util.RegionValue;
 import com.sexteam.vo.Hero_orders;
@@ -19,6 +21,7 @@ import java.util.Map;
 @WebServlet(name = "BuyHeroServlet",urlPatterns = "/buyheroservlet")
 public class BuyHeroServlet extends HttpServlet {
     private Hero_ordersService hero_ordersService;
+    private CarService carService;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -26,6 +29,7 @@ public class BuyHeroServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
+        String car_id = request.getParameter("car_id");
         hero_ordersService = new Hero_ordersServiceImp();
         Hero_orders hero_orders = new Hero_orders();
         Map<String, String[]> parameterMap = request.getParameterMap();
@@ -45,7 +49,6 @@ public class BuyHeroServlet extends HttpServlet {
             if(o_shippingaddress!=null){
                 //已经有收货地址了，进行了订单的确认，可以在数据库中插入订单了，但是订单状态初始为待支付
                  b= hero_ordersService.addOrder(hero_orders);
-
             }else {
                 request.setAttribute(RegionValue.HERO_ORDERS_JUDGE, hero_orders);
                 request.getRequestDispatcher("detailsservlet").forward(request, response);
@@ -53,6 +56,18 @@ public class BuyHeroServlet extends HttpServlet {
             }
         }
         if(b){
+            if (car_id!=null) {
+                int cid= Integer.parseInt(car_id);
+                carService = new CarServiceImp();
+                boolean f = carService.delCarByCarid(cid);
+                if (f) {
+                    User user2=(User)request.getSession().getAttribute(RegionValue.USER_MSG);
+                    user.setCarcount(carService.getCarCountByU_id(user2.getU_id()));
+                    request.getSession().setAttribute(RegionValue.USER_MSG,user2);
+                    response.sendRedirect("noworderservlet");
+                    return;
+                }
+            }
             response.sendRedirect("noworderservlet");
             return;
         }else {

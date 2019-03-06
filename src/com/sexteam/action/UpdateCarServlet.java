@@ -26,10 +26,10 @@ public class UpdateCarServlet extends HttpServlet {
         carService=new CarServiceImp();
         int cid= Integer.parseInt(car_id);
         int count= Integer.parseInt(buycount);
-        System.out.println("cid:"+cid+"--count:"+count);
+//        System.out.println("cid:"+cid+"--count:"+count);
         boolean b = carService.updateCarForCountByCid(cid,count);
         if(b){
-            System.out.println(true);
+//            System.out.println(true);
             response.getWriter().println(RegionValue.success);
             return;
         }

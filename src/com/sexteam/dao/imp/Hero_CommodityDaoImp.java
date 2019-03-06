@@ -34,6 +34,30 @@ public class Hero_CommodityDaoImp implements Hero_CommodityDao {
         return list;
     }
 
+    @Override
+    public boolean UpdateCommdity(Hero_Commodity hero_Commodity) {
+        Connection conn = DBHelper.getConn();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("UPDATE hero_commodity SET c_name=?  , c_proce=?,c_count=?,c_imag=? ,c_place=? ,type_id=? ,c_describe=? ,c_sales=?  where c_id=?");
+            preparedStatement.setString(1,hero_Commodity.getC_name());
+            preparedStatement.setFloat(2,hero_Commodity.getC_proce());
+            preparedStatement.setInt(3,hero_Commodity.getC_count());
+            preparedStatement.setString(4,hero_Commodity.getC_imag());
+            preparedStatement.setString(5,hero_Commodity.getC_place());
+            preparedStatement.setInt(6,hero_Commodity.getType_id());
+            preparedStatement.setString(7,hero_Commodity.getC_describe());
+            preparedStatement.setInt(8,hero_Commodity.getC_sales());
+            preparedStatement.setString(9,hero_Commodity.getC_id());
+            int i = preparedStatement.executeUpdate();
+            if(i==1){
+                return  true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private void baseTobean(List<Hero_Commodity> list, ResultSet resultSet) throws SQLException {
         Hero_Commodity commodity;
         while (resultSet.next()) {
@@ -166,4 +190,16 @@ public class Hero_CommodityDaoImp implements Hero_CommodityDao {
     }
 
 
+    public List<Hero_Commodity> fuzzyQueryForHeroName(String q) {
+        List<Hero_Commodity> list = new ArrayList<>();
+        Connection connection = DBHelper.getConn();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from hero_commodity  where c_name like '"+q+"%'");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            baseTobean(list, resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

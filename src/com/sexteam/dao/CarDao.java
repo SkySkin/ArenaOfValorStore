@@ -14,4 +14,6 @@ public interface CarDao {
     Car getCarByCid(int i);
 
     int getCarCountByU_id(int u_id);
+
+    boolean delCarByCarid(int i);
 }

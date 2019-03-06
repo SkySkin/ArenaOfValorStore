@@ -43,4 +43,11 @@ public class CarServiceImp implements CarService {
         int i=carDao.getCarCountByU_id(u_id);
         return i;
     }
+
+    @Override
+    public boolean delCarByCarid(int i) {
+        carDao = new CarDaoImp();
+        boolean b =carDao.delCarByCarid(i);
+        return b;
+    }
 }
